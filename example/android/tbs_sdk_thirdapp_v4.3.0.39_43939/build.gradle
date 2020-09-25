@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('tbs_sdk_thirdapp_v4.3.0.39_43939.jar'))
