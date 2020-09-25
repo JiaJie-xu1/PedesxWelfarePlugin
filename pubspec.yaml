@@ -1,7 +1,7 @@
 name: pedesxplugin
 description: A new Flutter plugin.
 version: 0.0.1
-homepage: https://github.com/JiaJie-xu1/PedesxPlugin.git
+homepage: https://github.com/JiaJie-xu1/PedesxWelfarePlugin.git
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
