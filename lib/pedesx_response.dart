@@ -24,13 +24,11 @@ class BasePedesxResponse {
 }
 
 class onRewardResponse extends BasePedesxResponse {
-  final bool rewardVerify;
-  final int rewardAmount;
-  final String rewardName;
+  final int rewardVideoState;
+  final String rewardVideoMsg;
 
   onRewardResponse.fromMap(Map map)
-      : rewardVerify = map["rewardVerify"],
-        rewardAmount = map["rewardAmount"],
-        rewardName = map["rewardName"],
+      : rewardVideoState = map["rewardVideoState"],
+        rewardVideoMsg = map["rewardVideoMsg"],
         super._(map[_errCode], map[_errStr]);
 }

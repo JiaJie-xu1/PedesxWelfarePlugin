@@ -22,6 +22,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
+import java.util.*
 
 /** PedesxpluginPlugin */
 public class PedesxpluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
@@ -93,6 +94,11 @@ public class PedesxpluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
             val video_id: String? = call.argument("video_id")
             RewardVideoSdk.playVideo(activity, Target.PLATFORM_CSJ, video_id) { state, msg ->
                 AnyscHttpLoading.dismissLoadingDialog()
+                val rewardVideoCallBack: MutableMap<String, Any> = HashMap()
+                rewardVideoCallBack["rewardVideoState"] = state
+                rewardVideoCallBack["rewardVideoMsg"] = msg
+                channel.invokeMethod("onRewardResponse",rewardVideoCallBack)
+
                 if (state == State.INIT_ERROR || state == State.ADERROR) {
                     Toast.makeText(activity, "播放失败", Toast.LENGTH_SHORT).show()
                 }

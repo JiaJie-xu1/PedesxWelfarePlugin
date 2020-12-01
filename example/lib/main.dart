@@ -21,7 +21,24 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-
+    /**
+     * rewardVideoState:
+     * -1;不支持的类型
+     *  0; 视频加载失败
+     *  1; 视频加载成功
+     *  2; 视频展示
+     *  3; 视频点击关闭
+     *  4; 视频播放完成
+     *  5; 视频出错
+     *  6; 视频跳过
+     *  7; 奖励回调
+     *  8; 点击视频
+     */
+    Pedesxplugin.pedesxResponseEventHandler.listen((event) {
+      if (event is Pedesxplugin.onRewardResponse) {
+        print("激励视频回调：${event.rewardVideoState}");
+      }
+    });
     initPlatformState();
   }
 
@@ -40,7 +57,7 @@ class _MyAppState extends State<MyApp> {
       Permission.storage,
     ].request();
     //校验权限
-    if(statuses[Permission.location] != PermissionStatus.granted){
+    if (statuses[Permission.location] != PermissionStatus.granted) {
       print("无位置权限");
     }
 
@@ -55,7 +72,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  _initPedesxSdk() async{
+  _initPedesxSdk() async {
     /**
      *  初始化SDK
      *  appID:渠道号
@@ -65,12 +82,13 @@ class _MyAppState extends State<MyApp> {
      */
 
     await Pedesxplugin.initPedesxSdk(
-        appId: "21",
-        shelf_id: "f4b005970b3640f4b9e85bddb14d274a",
-        csj_appId: "5056758",
-        csj_video_id: "945122969",
+      appId: "21",
+      shelf_id: "f4b005970b3640f4b9e85bddb14d274a",
+      csj_appId: "5056758",
+      csj_video_id: "945122969",
     );
   }
+
   @override
   Widget build(BuildContext context) {
     /**
@@ -78,10 +96,9 @@ class _MyAppState extends State<MyApp> {
      * 传入用户ID和设备oaid（可传）
      * 此uid需要替换成用户uid
      */
-     Pedesxplugin.initPedesxSdkUser(
-        uid: "123456789xjj",//一般为32位
-        oaid: ""
-    );
+    Pedesxplugin.initPedesxSdkUser(
+        uid: "123456789xjj", //一般为32位
+        oaid: "");
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -90,8 +107,7 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Center(
             child: FlatButton(
-              onPressed: ()
-              {
+              onPressed: () {
                 // Pedesxplugin.startPedesxWelfareActivity();
                 Pedesxplugin.playVideo(video_id: "945122969");
                 print("点击了Demo");
