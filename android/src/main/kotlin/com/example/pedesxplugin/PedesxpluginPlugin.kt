@@ -3,7 +3,12 @@ package com.example.pedesxplugin
 import android.app.Activity
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.NonNull
+import com.adsmobile.pedesxsdk.common.ui.view.AnyscHttpLoading
+import com.adsmobile.pedesxsdk.rewardvideo.RewardVideoSdk
+import com.adsmobile.pedesxsdk.rewardvideo.entity.State
+import com.adsmobile.pedesxsdk.rewardvideo.entity.Target
 import com.adsmobile.pedesxsdk.ui.activity.LookVideoActivity
 import com.adsmobile.pedesxsdk.ui.activity.PedesxWelfareActivity
 import com.adsmobile.pedesxsdk.utils.ActivityUtils
@@ -83,6 +88,15 @@ public class PedesxpluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
             ActivityUtils.startActivity(activity, LookVideoActivity::class.java)
         } else if (call.method == "startPedesxWelfareActivity") {
             ActivityUtils.startActivity(activity, PedesxWelfareActivity::class.java)
+        }else if (call.method == "playVideo"){
+            AnyscHttpLoading.showLoadingDialog(activity, "视频加载中，请稍后~")
+            val video_id: String? = call.argument("video_id")
+            RewardVideoSdk.playVideo(activity, Target.PLATFORM_CSJ, video_id) { state, msg ->
+                AnyscHttpLoading.dismissLoadingDialog()
+                if (state == State.INIT_ERROR || state == State.ADERROR) {
+                    Toast.makeText(activity, "播放失败", Toast.LENGTH_SHORT).show()
+                }
+            }
         } else {
             result.notImplemented()
         }

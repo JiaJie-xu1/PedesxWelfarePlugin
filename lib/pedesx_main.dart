@@ -46,6 +46,13 @@ Future<bool> initPedesxSdkUser({
       .invokeMethod("registerPedesxUser", {"uid": uid, "oaid": oaid});
 }
 
+Future<bool> playVideo({
+  @required String video_id
+}) async {
+  return await _channel
+      .invokeMethod("playVideo", {"video_id": video_id});
+}
+
 Future<bool> startPedesxVideoActivity() async {
   return await _channel.invokeMethod("startPedesxVideoActivity");
 }

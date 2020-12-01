@@ -62,8 +62,6 @@ class _MyAppState extends State<MyApp> {
      *  shelf_id:任务的货架ID
      *  csjAppId：穿山甲后台的AppID
      *  codeId：穿山甲后台申请的激励视频广告位ID
-     *  ylh_appId:优量汇后台申请的appID
-     *  ylh_video_id:优量汇后台申请的激励视频广告位ID
      */
 
     await Pedesxplugin.initPedesxSdk(
@@ -76,7 +74,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     /**
-     * 在拿到用户信息之后，调用次方法
+     * 在拿到用户信息之后，调用此方法
      * 传入用户ID和设备oaid（可传）
      * 此uid需要替换成用户uid
      */
@@ -94,10 +92,11 @@ class _MyAppState extends State<MyApp> {
             child: FlatButton(
               onPressed: ()
               {
-                Pedesxplugin.startPedesxWelfareActivity();
+                // Pedesxplugin.startPedesxWelfareActivity();
+                Pedesxplugin.playVideo(video_id: "945122969");
                 print("点击了Demo");
               },
-              child: Text("点击进入PedesxWelfareDemo"),
+              child: Text("点击加载激励视频"),
             ),
           ),
         ),
