@@ -28,6 +28,7 @@ Future<bool> initPedesxSdk({
   @required String shelf_id, //任务货架ID
   @required String csj_appId, //穿山甲APPID
   @required String csj_video_id, //穿山甲激励视频ID
+  @required String welfare_id
 
 }) async {
   return await _channel.invokeMethod("registerPedesx", {
@@ -35,6 +36,7 @@ Future<bool> initPedesxSdk({
     "shelf_id": shelf_id,
     "csj_appId": csj_appId,
     "csj_video_id": csj_video_id,
+    "welfare_id":welfare_id
   });
 }
 

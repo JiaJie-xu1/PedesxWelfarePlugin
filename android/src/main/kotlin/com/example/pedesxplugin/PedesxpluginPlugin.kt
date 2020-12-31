@@ -79,8 +79,9 @@ public class PedesxpluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
             val shelf_id: String? = call.argument("shelf_id")
             val csj_appId: String? = call.argument("csj_appId")
             val csj_video_id: String? = call.argument("csj_video_id")
+            val welfare_id: String? = call.argument("welfare_id")
 
-            PedesxUtil.init(applicationContext, appId, shelf_id, csj_appId, csj_video_id)
+            PedesxUtil.init(applicationContext, appId, shelf_id, csj_appId, csj_video_id, welfare_id)
         } else if (call.method == "registerPedesxUser") {
             val uid: String? = call.argument("uid")
             val oaid: String? = call.argument("oaid")
@@ -89,7 +90,7 @@ public class PedesxpluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
             ActivityUtils.startActivity(activity, LookVideoActivity::class.java)
         } else if (call.method == "startPedesxWelfareActivity") {
             ActivityUtils.startActivity(activity, PedesxWelfareActivity::class.java)
-        }else if (call.method == "playVideo"){
+        } else if (call.method == "playVideo") {
             AnyscHttpLoading.showLoadingDialog(activity, "视频加载中，请稍后~")
             val video_id: String? = call.argument("video_id")
             RewardVideoSdk.playVideo(activity, Target.PLATFORM_CSJ, video_id) { state, msg ->
@@ -97,7 +98,7 @@ public class PedesxpluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                 val rewardVideoCallBack: MutableMap<String, Any> = HashMap()
                 rewardVideoCallBack["rewardVideoState"] = state
                 rewardVideoCallBack["rewardVideoMsg"] = msg
-                channel.invokeMethod("onRewardResponse",rewardVideoCallBack)
+                channel.invokeMethod("onRewardResponse", rewardVideoCallBack)
 
                 if (state == State.INIT_ERROR || state == State.ADERROR) {
                     Toast.makeText(activity, "播放失败", Toast.LENGTH_SHORT).show()

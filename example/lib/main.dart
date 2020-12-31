@@ -82,11 +82,11 @@ class _MyAppState extends State<MyApp> {
      */
 
     await Pedesxplugin.initPedesxSdk(
-      appId: "21",
-      shelf_id: "f4b005970b3640f4b9e85bddb14d274a",
-      csj_appId: "5056758",
-      csj_video_id: "945122969",
-    );
+        appId: "50",
+        shelf_id: "f4b005970b3640f4b9e85bddb14d274a",
+        csj_appId: "5056758",
+        csj_video_id: "945122969",
+        welfare_id: "c2fd0cfac5004ac6a39f1745c801a8c4");
   }
 
   @override
@@ -97,7 +97,7 @@ class _MyAppState extends State<MyApp> {
      * 此uid需要替换成用户uid
      */
     Pedesxplugin.initPedesxSdkUser(
-        uid: "123456789xjj", //一般为32位
+        uid: "1234567890xjj", //一般为32位
         oaid: "");
     return MaterialApp(
       home: Scaffold(
@@ -108,11 +108,11 @@ class _MyAppState extends State<MyApp> {
           child: Center(
             child: FlatButton(
               onPressed: () {
-                // Pedesxplugin.startPedesxWelfareActivity();
-                Pedesxplugin.playVideo(video_id: "945122969");
+                Pedesxplugin.startPedesxWelfareActivity();
+                // Pedesxplugin.playVideo(video_id: "945122969");
                 print("点击了Demo");
               },
-              child: Text("点击加载激励视频"),
+              child: Text("点击进入福利中心"),
             ),
           ),
         ),
