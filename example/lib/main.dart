@@ -99,6 +99,7 @@ class _MyAppState extends State<MyApp> {
     Pedesxplugin.initPedesxSdkUser(
         uid: "1234567890xjj", //一般为32位
         oaid: "");
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
